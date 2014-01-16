@@ -7,15 +7,15 @@ namespace MiniBlogFormatter
         static void Main(string[] args)
         {
             // For BlogEngine.NET only
-            string categories = @"C:\Users\madsk\Desktop\BlogPosts\categories.xml";
+            string categories = @"C:\dev\MiniBlogFormatter\myblogposts";
 
             // For both BlogEngine.NET and DasBlog
-            string origin = @"C:\Users\madsk\Desktop\SayedBlog\content"; 
-            string destination = @"C:\Users\madsk\Desktop\SayedBlog\posts";
+            string origin = @"C:\dev\MiniBlogFormatter\myblogposts";
+            string destination = @"C:\dev\MiniBlogFormatter\formated";
 
 
             //BlogEngine(categories, folder, destination);
-            DasBlog(origin, destination);
+            Wordpress(origin, destination);
         }
 
         private static void DasBlog(string folder, string destination)
@@ -23,6 +23,13 @@ namespace MiniBlogFormatter
             DasBlogFormatter formatter = new DasBlogFormatter();
             formatter.Format(folder, destination);
         }
+
+        private static void Wordpress(string folder, string destination)
+        {
+            WordpressFormatter formatter = new WordpressFormatter();
+            formatter.Format(folder, destination);
+        }
+
 
         private static void BlogEngine(string categories, string folder, string destination)
         {
