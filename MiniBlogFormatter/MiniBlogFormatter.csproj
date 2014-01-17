@@ -45,6 +45,7 @@
     <Compile Include="Formatters\DasBlogFormatter.cs" />
     <Compile Include="Formatters\BlogEngineFormatter.cs" />
     <Compile Include="Formatters\FormatterHelpers.cs" />
+    <Compile Include="Formatters\WordpressFormatter.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\Storage.cs" />
