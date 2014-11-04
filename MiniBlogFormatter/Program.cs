@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System.CodeDom.Compiler;
+using System.IO;
+using MiniBlogFormatter.Formatters;
 
 namespace MiniBlogFormatter
 {
@@ -7,37 +9,45 @@ namespace MiniBlogFormatter
         static void Main(string[] args)
         {
             // For BlogEngine.NET only
-            string categories = @"C:\dev\MiniBlogFormatter\myblogposts";
+            var categories = @"C:\dev\MiniBlogFormatter\myblogposts";
 
             // For both BlogEngine.NET and DasBlog
-            string origin = @"C:\dev\MiniBlogFormatter\myblogposts";
-            string destination = @"C:\dev\MiniBlogFormatter\formated";
+            var origin = @"C:\Temp\GhostData.json";
+            var destination = @"C:\Temp\Formatted";
 
 
             //BlogEngine(categories, folder, destination);
-            Wordpress(origin, destination);
+            //Wordpress(origin, destination);
+
+            Ghost(origin, destination);
         }
 
         private static void DasBlog(string folder, string destination)
         {
-            DasBlogFormatter formatter = new DasBlogFormatter();
+            var formatter = new DasBlogFormatter();
             formatter.Format(folder, destination);
         }
 
         private static void Wordpress(string folder, string destination)
         {
-            WordpressFormatter formatter = new WordpressFormatter();
+            var formatter = new WordpressFormatter();
             formatter.Format(folder, destination);
         }
 
 
         private static void BlogEngine(string categories, string folder, string destination)
         {
-            BlogEngineFormatter formatter = new BlogEngineFormatter();
+            var formatter = new BlogEngineFormatter();
             foreach (string file in Directory.GetFiles(folder, "*.xml"))
             {
                 formatter.Format(file, destination, categories);
             }
+        }
+
+        private static void Ghost(string folder, string destination)
+        {
+            var formatter = new GhostFormatter();
+            formatter.Format(folder, destination);
         }
     }
 }
