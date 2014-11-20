@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Formatters\BlogMLFormatter.cs" />
     <Compile Include="Formatters\DasBlogFormatter.cs" />
     <Compile Include="Formatters\BlogEngineFormatter.cs" />
     <Compile Include="Formatters\FormatterHelpers.cs" />

@@ -1,6 +1,5 @@
-﻿using System.CodeDom.Compiler;
+﻿using MiniBlogFormatter.Formatters;
 using System.IO;
-using MiniBlogFormatter.Formatters;
 
 namespace MiniBlogFormatter
 {
@@ -12,14 +11,27 @@ namespace MiniBlogFormatter
             var categories = @"C:\dev\MiniBlogFormatter\myblogposts";
 
             // For both BlogEngine.NET and DasBlog
-            var origin = @"C:\Temp\GhostData.json";
-            var destination = @"C:\Temp\Formatted";
+            //var origin = @"C:\Temp\GhostData.json";
+            //var destination = @"C:\Temp\Formatted";
 
 
             //BlogEngine(categories, folder, destination);
             //Wordpress(origin, destination);
 
-            Ghost(origin, destination);
+            //Ghost(origin, destination);
+
+            // For BlogML
+            var origin = @"C:\dev\BlogMLExport.xml";
+            var destination = @"C:\dev\formatted";
+
+            BlogML(origin, destination);
+        }
+
+        static void BlogML(string file, string destination)
+        {
+            var formatter = new BlogMLFormatter();
+
+            formatter.Format(file, destination);
         }
 
         private static void DasBlog(string folder, string destination)
