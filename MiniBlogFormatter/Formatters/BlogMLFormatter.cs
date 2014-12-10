@@ -48,7 +48,17 @@ namespace MiniBlogFormatter
             XElement author = postData.Descendants(ns + "author").FirstOrDefault();
 
             if (author != null)
-                post.Author = authors[author.Attribute("ref").Value];
+            {
+                var thisArthor = author.Attribute("ref").Value;
+                foreach(var thisKey in authors.Keys)
+                {
+                    // Fixes issue when author name has different cases from the Key value of Authors
+                    if(thisArthor.Equals(thisKey, StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        post.Author = authors[thisKey];
+                    }
+                }
+            }
 
             foreach (XElement commentData in postData.Descendants(ns + "comment"))
             {
