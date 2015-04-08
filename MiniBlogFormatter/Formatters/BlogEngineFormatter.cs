@@ -6,7 +6,7 @@ namespace MiniBlogFormatter
 {
     public class BlogEngineFormatter
     {
-        private Regex rxFiles = new Regex("(href|src)=\"(([^\"]+)?/(file|image)\\.axd\\?(file|picture)=([^\"]+))\"", RegexOptions.IgnoreCase);
+        private Regex rxFiles = new Regex("(href|src)=\"(([^\"]+)?(file|image)\\.axd\\?(file|picture)=([^\"]+))\"", RegexOptions.IgnoreCase);
         private Regex rxAggBug = new Regex("<img (.*) src=(.*(aggbug.ashx).*) />", RegexOptions.IgnoreCase);
 
         public void Format(string fileName, string targetFolderPath, string categoriesFileName)
