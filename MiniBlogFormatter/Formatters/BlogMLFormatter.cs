@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
 
@@ -24,6 +25,21 @@ namespace MiniBlogFormatter
 
                 Storage.Save(post, Path.Combine(targetFolderPath, post.ID + ".xml"));
             }
+        }
+
+        public void ConvertFromBase64(string fileName, string targetFileName)
+        {
+            XDocument doc = XDocument.Load(fileName);
+            var query = doc.Descendants(ns + "content")
+                           .Where(node => (string)node.Attribute("type") == "base64");
+            foreach (var item in query)
+            {
+                var content = Encoding.UTF8.GetString(Convert.FromBase64String(item.Value));
+
+                item.SetValue(content);
+            }
+
+            doc.Save(targetFileName);
         }
 
         Post ParsePost(XElement postData, Dictionary<string, string> authors, Dictionary<string, string> categories)

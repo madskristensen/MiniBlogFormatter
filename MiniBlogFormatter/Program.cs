@@ -21,15 +21,19 @@ namespace MiniBlogFormatter
             //Ghost(origin, destination);
 
             // For BlogML
+            var base64File = @"C:\Blog\BlogMLExport-b64.xml";
             var origin = @"C:\dev\BlogMLExport.xml";
             var destination = @"C:\dev\formatted";
-
-            BlogML(origin, destination);
+            BlogML(origin, destination, base64File);
         }
 
-        static void BlogML(string file, string destination)
+        static void BlogML(string file, string destination, string base64File = null)
         {
             var formatter = new BlogMLFormatter();
+            if (base64File != null)
+            {
+                formatter.ConvertFromBase64(base64File, file);
+            }
 
             formatter.Format(file, destination);
         }
